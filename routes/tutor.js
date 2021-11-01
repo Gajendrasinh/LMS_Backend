@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const tutorController = require("../controllers/tutor");
+const routeValidators = require("../validators/route-validators");
+router.get('/tutorials',tutorController.courseList);
+router.get('/courses',routeValidators.verifyAuthorizedPerson ,tutorController.courseListByTutorId);
+router.post('/tutorial', routeValidators.verifyAuthorizedPerson ,tutorController.addTutorial);
+router.put('/tutorials/:id', routeValidators.verifyAuthorizedPerson ,tutorController.updateTutorial);
+router.delete('/tutorials/:id', routeValidators.verifyAuthorizedPerson ,tutorController.deleteTutorial);
+module.exports = router;

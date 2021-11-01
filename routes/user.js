@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const userController = require('../controllers/user');
+const routeValidators = require("../validators/route-validators");
+router.post('/register', routeValidators.verifyAuthorizedPerson ,userController.register);
+router.put('/:id', userController.updateOwnProfile);
+router.post('/login', userController.login);
+router.get('/roles', userController.getRoles);
+router.get('/list', userController.getUsers);
+router.get('/:id', userController.getOwnProfile);
+module.exports = router;
